@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"log"
+	"net/url"
 )
 
 // define all command line args here
@@ -19,21 +20,21 @@ func main() {
 	flag.Parse()
 
 	if beerFlag != "" {
-		score := BeerScore(beerFlag)
+		beerName := url.PathEscape(beerFlag)
+		score := BeerScore(beerName)
 		log.Printf("%v : %v\n", beerFlag, score)
 	}
 
 	// at this point, the flags we support must have a command line arg that is the URL
-	url := flag.Arg(0)
-	if url == "" {
-		return
+	url, err := url.Parse(flag.Arg(0))
+	if err != nil {
+		log.Fatalf("Unable to parse url %s: %v\n", url, err)
 	}
 
 	if imgFlag {
-		images, err := FindImages(url)
+		images, err := FindImages(url.String())
 		if err != nil {
-			log.Println(err)
-			return
+			log.Fatal(err)
 		}
 
 		log.Println("images:")
@@ -43,10 +44,9 @@ func main() {
 	}
 
 	if vidFlag {
-		vids, err := FindVideos(url)
+		vids, err := FindVideos(url.String())
 		if err != nil {
-			log.Println(err)
-			return
+			log.Fatal(err)
 		}
 
 		log.Println("videos:")
@@ -56,10 +56,9 @@ func main() {
 	}
 
 	if linkFlag {
-		links, err := FindLinks(url)
+		links, err := FindLinks(url.String())
 		if err != nil {
-			log.Println(err)
-			return
+			log.Fatal(err)
 		}
 
 		log.Println("links:")
