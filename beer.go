@@ -18,21 +18,3 @@ func BeerScore(beerName string) string {
 	pipeParts := strings.Split(endPart, "|")
 	return pipeParts[0]
 }
-
-// a simple demo that this works
-func runBeer() {
-	beers := []string{
-		"voodoo+ranger",
-		"sloop+juice+bomb",
-		"budweiser",
-		"heineken",
-		"hoegaarden",
-		"miller+lite",
-		"rogue+dead+guy",
-		"stone+ipa",
-	}
-	for _, beer := range beers {
-		score := BeerScore(beer)
-		log.Printf("%v has a score of %v\n", beer, score)
-	}
-}
