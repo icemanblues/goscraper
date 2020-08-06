@@ -35,7 +35,8 @@ func Scrape(url, selector string) (*goquery.Selection, error) {
 	return document.Find(selector), nil
 }
 
-func writeFile(url, filename string) error {
+// WriteFile takes a URL and writes it to file via streaming reader writer
+func WriteFile(url, filename string) error {
 	resp, err := myGet(url)
 	if err != nil {
 		return err
@@ -54,7 +55,7 @@ func writeFile(url, filename string) error {
 // WriteUrl given a url, it will load and write to the local file system
 func WriteUrl(url string) error {
 	parts := strings.Split(url, "/")
-	return writeFile(url, parts[len(parts)-1])
+	return WriteFile(url, parts[len(parts)-1])
 }
 
 // FindAttribute given a url, selector, and attribute, it will load the URL, find the element(s)
