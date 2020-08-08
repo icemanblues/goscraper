@@ -51,6 +51,6 @@ $ goscraper -links -images -videos https://www.github.com/icemanblues/goscraper
 ### beerscore
 
 ```
-$ goscraper -beer czechvar
+$ beerscore czechvar
 2020/08/02 22:32:43 czechvar : 80
 ```
