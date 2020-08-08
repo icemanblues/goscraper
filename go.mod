@@ -1,4 +1,4 @@
-module github.com/icemanblues/go-scraper
+module github.com/icemanblues/goscraper
 
 go 1.14
 

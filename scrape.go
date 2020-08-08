@@ -1,4 +1,4 @@
-package main
+package goscrape
 
 import (
 	"fmt"
@@ -11,7 +11,7 @@ import (
 )
 
 // TODO: randomly generate valid user agents
-func myGet(url string) (*http.Response, error) {
+var myGet = func(url string) (*http.Response, error) {
 	return http.Get(url)
 }
 
