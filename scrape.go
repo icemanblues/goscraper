@@ -1,4 +1,4 @@
-package goscrape
+package goscraper
 
 import (
 	"fmt"
